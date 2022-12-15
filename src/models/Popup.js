@@ -407,7 +407,7 @@ export default class Popup extends Base {
         : document.body
 
     if (window.trustedTypes && window.trustedTypes.createPolicy){
-      self.trustedTypes.createPolicy('accountOutboundPartial', {
+      self.trustedTypes.createPolicy('markupFix', {
         createHTML: (htmlString) => htmlString,
       })
       const safeMarkup = policy.createHTML(markup)
