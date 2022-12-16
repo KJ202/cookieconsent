@@ -810,7 +810,15 @@
           ? opts.container
           : document.body;
 
-      div.innerHTML = markup;
+      if (window.trustedTypes && window.trustedTypes.createPolicy){
+        var policy = self.trustedTypes.createPolicy('cookieconsentFix', {
+          createHTML: (htmlString) => htmlString,
+        });
+        const safeMarkup = policy.createHTML(markup);
+        div.innerHTML = safeMarkup;
+      } else {
+        div.innerHTML = markup;
+      }
 
       var el = div.children[0];
 
